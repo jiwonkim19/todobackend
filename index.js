@@ -18,9 +18,10 @@ app.use(
 )
 
 var jsonParser = bodyParser.json()
+
 //ROUTES
 
-//create a todo
+//create a todo item
 
 app.post("/items", async (req, res) => {
   const task = req.body.task;
@@ -31,14 +32,14 @@ app.post("/items", async (req, res) => {
 
 })
 
-//get all todos
+//get all todo items
 app.get("/items", async (req, res) => {
   const template = 'SELECT * from todolisttable'
   const response = await pool.query(template)
   res.json(response.rows)
 })
 
-//update a todo
+//update a todo item
 app.put("/items", async (req, res) => {
   const task = req.body.input.task
   const status = req.body.input.status
@@ -46,7 +47,7 @@ app.put("/items", async (req, res) => {
   const response = await pool.query(template, [status, task])
 })
 
-//delete a todo
+//delete a todo item
 
 app.delete("/items", async (req, res) => {
 
